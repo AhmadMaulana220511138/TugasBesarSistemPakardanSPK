@@ -1,0 +1,182 @@
+{% extends "app.html" %}
+
+{% block title %}InvestKu - Rekomendasi Investasi{% endblock %}
+
+{% block content %}
+
+<style>
+    /* HERO TITLE */
+    .page-title {
+        font-size: 2.6rem;
+        font-weight: 800;
+        background: linear-gradient(120deg, #2563eb, #7c3aed, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -1px;
+    }
+
+    .page-subtitle {
+        font-size: 1.2rem;
+        color: #64748b;
+        margin-top: 6px;
+    }
+
+    /* FORM CARD */
+    .glass-form {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        padding: 2rem 2.1rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        transition: 0.3s;
+    }
+    .glass-form:hover {
+        box-shadow: 0 28px 60px rgba(0,0,0,0.10);
+    }
+
+    /* SUBTITLE */
+    .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    /* RESULT BOX */
+    .result-box {
+        background: #f1f5f9;
+        padding: 12px 18px;
+        border-radius: 14px;
+        font-size: 1.05rem;
+        margin-bottom: 15px;
+    }
+
+    /* Animated Progress Bar */
+    .dynamic-width {
+        width: var(--val);
+        transition: width 1s ease-in-out;
+    }
+
+    /* Button */
+    .btn-glass {
+        background: linear-gradient(120deg, #2563eb, #4f46e5);
+        border: none;
+        padding: 0.9rem;
+        color: white;
+        font-weight: 600;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(37,99,235,0.35);
+        transition: 0.3s;
+    }
+    .btn-glass:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(37,99,235,0.45);
+    }
+</style>
+
+
+<div class="container" style="max-width: 800px;">
+
+    <!-- TITLE -->
+    <div class="text-center mb-5">
+        <h1 class="page-title">Rekomendasi Investasi</h1>
+        <p class="page-subtitle">
+            Hitung alokasi investasi Anda dengan pendekatan <strong>Logika Fuzzy</strong>
+        </p>
+    </div>
+
+    <!-- FORM -->
+    <div class="glass-form mb-5">
+
+        <p class="section-title mb-3">
+            <i class="bi bi-sliders2-vertical me-1"></i> Input Profil Investasi
+        </p>
+
+        <form method="POST" action="/investasi">
+
+            <label class="form-label mt-2">Profil Risiko (0 - 10)</label>
+            <input type="number" class="form-control" min="0" max="10" required name="risk"
+                   placeholder="0 = sangat konservatif, 10 = sangat agresif">
+
+            <label class="form-label mt-3">Tujuan Finansial</label>
+            <select class="form-select" name="goal" id="goalSelect" required>
+                <option value="pendek">Kebutuhan Jangka Pendek</option>
+                <option value="menengah">Perencanaan 1–5 Tahun</option>
+                <option value="panjang">Investasi Jangka Panjang</option>
+            </select>
+
+            <label class="form-label mt-3">Jangka Waktu Investasi</label>
+            <select class="form-select" name="duration" id="durationSelect" required>
+                <option value="1">≤ 1 Tahun</option>
+                <option value="5">1–5 Tahun</option>
+                <option value="10">> 5 Tahun</option>
+            </select>
+
+            <button class="btn-glass w-100 mt-4">
+                <i class="bi bi-calculator me-1"></i> Dapatkan Rekomendasi
+            </button>
+        </form>
+    </div>
+
+
+    <!-- RESULT -->
+    {% if result %}
+    <div class="glass-form">
+
+        <p class="section-title mb-3">
+            <i class="bi bi-bar-chart-line-fill me-1"></i> Hasil Analisis
+        </p>
+
+        <div class="result-box">
+            Profil risiko <b>{{ result.risk }}</b>, tujuan <b>{{ result.goal }}</b>, durasi  
+            <b>{{ result.duration }}</b> tahun.
+        </div>
+
+        <b>Aset Risiko Tinggi</b>
+        <div class="progress mt-1">
+            <div class="progress-bar bg-danger dynamic-width"
+                 style="--val: {{ result.risky }}%;">
+                {{ result.risky }}%
+            </div>
+        </div>
+
+        <b class="mt-3 d-block">Aset Aman</b>
+        <div class="progress mt-1">
+            <div class="progress-bar bg-success dynamic-width"
+                 style="--val: {{ result.safe }}%;">
+                {{ result.safe }}%
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <h5><b>Rekomendasi Portofolio:</b></h5>
+        <ul>
+            {% for item in result.recommendations %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <p class="text-muted mt-2" style="font-size: 14px;">
+            Rekomendasi dihasilkan oleh sistem logika fuzzy untuk memberikan keputusan yang lebih fleksibel dan adaptif.
+        </p>
+
+    </div>
+    {% endif %}
+<br>
+<br>
+</div>
+
+
+<script>
+document.getElementById("goalSelect").addEventListener("change", function () {
+    let goal = this.value;
+    let duration = document.getElementById("durationSelect");
+
+    if (goal === "pendek") duration.value = "1";
+    if (goal === "menengah") duration.value = "5";
+    if (goal === "panjang") duration.value = "10";
+});
+</script>
+
+{% endblock %}

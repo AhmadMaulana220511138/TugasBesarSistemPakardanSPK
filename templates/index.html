@@ -1,0 +1,138 @@
+{% extends "app.html" %}
+
+{% block title %}InvestKu – Rekomendasi Investasi Cerdas{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION – SUPER PREMIUM & PROFESIONAL -->
+<section class="min-vh-100 d-flex align-items-center position-relative overflow-hidden" style="margin-top: -90px;">
+
+
+    <div class="container position-relative z-3">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-10 col-xl-8">
+
+                <!-- Badge Kecil -->
+                <div class="d-inline-block mb-4">
+                    <span class="badge bg-primary-subtle text-primary fs-6 px-4 py-2 rounded-pill fw-semibold">
+                        Sistem Pakar Berbasis Logika Fuzzy
+                    </span>
+                </div>
+
+                <!-- Judul Utama – Gradasi Elegan -->
+                <h1 class="display-3 fw-bold mb-4 lh-1">
+                    <span class="gradient-heading">InvestKu</span>
+                </h1>
+
+                <!-- Sub Judul – Clean & Trustworthy -->
+                <p class="lead fs-3 text-muted mb-5 max-w-4xl mx-auto">
+                    Dapatkan rekomendasi alokasi investasi yang <span class="text-primary fw-semibold">paling optimal</span> 
+                    sesuai profil risiko, tujuan keuangan, dan horizon waktu Anda — didukung teknologi 
+                    <span class="fw-semibold">Fuzzy Logic</span> untuk hasil yang lebih adaptif dan realistis.
+                </p>
+
+                <!-- Tombol Utama – Besar & Mewah -->
+                <div class="d-flex flex-column flex-sm-row gap-4 justify-content-center align-items-center">
+                    <a href="/investasi" 
+                       class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg position-relative overflow-hidden">
+                        <span class="position-relative z-3">Mulai Analisis Sekarang</span>
+                    </a>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-5 pt-4">
+                    <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
+                        <div class="text-muted small">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Tanpa registrasi
+                        </div>
+                        <div class="text-muted small">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Hasil instan
+                        </div>
+                        <div class="text-muted small">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            100% gratis
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- FITUR SINGKAT (scroll target) -->
+<section id="fitur" class="py-5 bg-white">
+    <div class="container">
+        <div class="row text-center g-5">
+            <div class="col-md-4">
+                <div class="p-4">
+                    <i class="bi bi-shield-check display-4 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Profil Risiko Akurat</h5>
+                    <p class="text-muted small">Penilaian risiko 0–10 dengan skala halus</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4">
+                    <i class="bi bi-graph-up-arrow display-4 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Logika Fuzzy</h5>
+                    <p class="text-muted small">Bukan hitam-putih, tapi hasil yang realistis</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4">
+                    <i class="bi bi-lightning-charge display-4 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Hasil Instan</h5>
+                    <p class="text-muted small">Kurang dari 30 detik, rekomendasi siap</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CSS KHUSUS HALAMAN INI (super elegan) -->
+<style>
+    .gradient-heading {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 30%, #8b5cf6 70%, #ec4899 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.15em;
+        letter-spacing: -2px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #2563eb, #3b82f6);
+        border: none;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 15px 35px rgba(37, 99, 235, 0.35);
+    }
+    .btn-primary:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 25px 60px rgba(37, 99, 235, 0.5);
+        background: linear-gradient(45deg, #1d4ed8, #2563eb);
+    }
+
+    .btn-outline-primary {
+        border: 2px solid #2563eb;
+        color: #2563eb;
+        transition: all 0.3s;
+    }
+    .btn-outline-primary:hover {
+        background: #2563eb;
+        color: white;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+        .display-3 {
+            font-size: 3.5rem;
+        }
+        .lead.fs-3 {
+            font-size: 1.3rem !important;
+        }
+    }
+</style>
+
+{% endblock %}
